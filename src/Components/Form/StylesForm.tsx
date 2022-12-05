@@ -26,7 +26,7 @@ export const H1 = styled.h1`
   }
 `
 
-export const StyledLabel = styled.label`
+export const StyledLabel = styled.label<{acceptedNoClicked?: boolean}>`
   line-height: 33px;
   font-family: "Inter";
   font-style: normal;
@@ -44,6 +44,9 @@ export const StyledLabel = styled.label`
     font-style: normal;
     font-weight: 700;
     font-size: 25px;
+  }
+  & > input:invalid{
+    border-bottom: ${props => props.acceptedNoClicked ? 'red' : "#000"};
   }
 `;
 
@@ -73,10 +76,12 @@ export const StyledForm = styled.form<Props>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 `;
 
-export const StyledCheckbox = styled.label`
+export const StyledCheckbox = styled.label<{acceptedNoClicked?: boolean}>`
   font-family: "Inter";
+  width: 100%;
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -86,11 +91,12 @@ export const StyledCheckbox = styled.label`
   display: grid;
   grid-template-columns: 1em auto;
   gap:20px;
+  position:relative;
   & > input{
     width: 24px;
     height: 24px;
     border-radius: 15%;
-    border: 3px solid #000000;
+    border: 3px solid ${props => props.acceptedNoClicked ? 'red' : "#000"};
     appearance: none;
     -webkit-appearance: none;
     outline: none;
@@ -98,13 +104,17 @@ export const StyledCheckbox = styled.label`
   }
   & > input:checked{
     background-color: #071594;
-    width: 24px;
-    height: 24px;
-    border-radius: 15%;
     border: 3px solid #071594;
-    appearance: none;
-    -webkit-appearance: none;
-    outline: none;
-    cursor: pointer;
+  }
+  &::after{
+    position:absolute;
+    right: 0;
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 165%;
+    color:red;
+    ${props => props.acceptedNoClicked ? 'content: "Wymagana akceptacja regulaminu";': 'content: "";'};
   }
 `;

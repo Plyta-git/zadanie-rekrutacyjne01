@@ -86,6 +86,6 @@ export const NextProfileButton = styled.a<{active?: boolean}>`
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-style: italic;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  -webkit-text-stroke: 1px ${props => props.active ? '#ffffff' : "#979797"};
+  -webkit-text-stroke: 1px ${props => props.active ? '#ffffff' : "#313131"};
   padding: 8px 40px 12px 40px;
 `;

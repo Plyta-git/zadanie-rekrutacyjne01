@@ -75,16 +75,17 @@ export const UserName = styled.div`
 `;
 
 
-export const NextProfileButton = styled.a`
-  margin-top: 20px;
+export const NextProfileButton = styled.a<{active?: boolean}>`
+  margin-top: 20px; 
   cursor: pointer;
   background: #35660E;
+  background: ${props => props.active ? '#35660E' : "#253a14"};
   box-shadow: 10px 4px 4px rgba(0, 0, 0, 0.75);
   border-radius: 20px;
-  color: #ffffff;
+  color: ${props => props.active ? '#ffffff' : "#bbbbbb"};
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-style: italic;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  -webkit-text-stroke: 1px #d9d9d9;
+  -webkit-text-stroke: 1px ${props => props.active ? '#ffffff' : "#979797"};
   padding: 8px 40px 12px 40px;
 `;

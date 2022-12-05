@@ -1,21 +1,13 @@
-import { useEffect, useState } from "react";
-import imgTest from "../../img.jpg";
 import {Main, MainPanel,UserNamePanel, StyledUserPanel, UserInfo, Img, User, UserName, NextProfileButton} from './StylesUserPanel'
+import { useEffect, useState } from "react";
 import imgAddUser from '../../assets/addUser.svg'
 import imgApply from '../../assets/apply.svg'
 import {BoxProps} from './Types'
-import { imgFetchURL } from "../../Data";
 
-export const UserPanel = ({ usersData }: BoxProps) => {
-  const [sImg, setSImg] = useState(imgTest);
-  useEffect(() => {
-    fetch(imgFetchURL)
-      .then((res) => res.blob())
-      .then((imgBlob) => {
-        setSImg(URL.createObjectURL(imgBlob));
-      });
-  }, []);
-
+export const UserPanel = ({ usersData, setcurrentUserID, sImg, isLoadingAPI, isError }: BoxProps,) => {
+  const errorData = {name:"Error", birth_year:"000", eye_color:"000"}
+  const {name, birth_year, eye_color} = isError ? errorData : usersData[0];
+  
   return (
     <Main>
       <MainPanel>
@@ -24,7 +16,7 @@ export const UserPanel = ({ usersData }: BoxProps) => {
           <User>
             <UserNamePanel>
               <UserName>
-                {usersData[0].name}
+                {name}
               </UserName>
               <div>
                 <img src={imgAddUser} />
@@ -32,12 +24,16 @@ export const UserPanel = ({ usersData }: BoxProps) => {
               </div>
             </UserNamePanel>
             <UserInfo>
-              <div>age: {usersData[0].birth_year}</div>
-              <div>eye color: {usersData[0].eye_color}</div>
+              <div>age: {birth_year}</div>
+              <div>eye color: {eye_color}</div>
             </UserInfo>
           </User>
         </StyledUserPanel>
-        <NextProfileButton onClick={()=> console.log(123)} >next profiles</NextProfileButton>
+        {!isLoadingAPI? 
+        <NextProfileButton active={true} onClick={()=> setcurrentUserID(p => p+1)} >next profiles</NextProfileButton>
+        : 
+        <NextProfileButton  onClick={()=> alert("Dont spam, data is loading...")} >Loading...</NextProfileButton>
+        }
       </MainPanel>
     </Main>
   );

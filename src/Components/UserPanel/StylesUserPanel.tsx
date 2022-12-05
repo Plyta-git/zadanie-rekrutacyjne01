@@ -48,12 +48,12 @@ export const UserInfo = styled.div`
 `;
 
 export const UserNamePanel = styled.div`
+
   font-style: normal;
   font-weight: 800;
-  font-size: 2.6vw;
   line-height: 61px;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   & > div {
     display: flex;
@@ -64,7 +64,10 @@ export const UserNamePanel = styled.div`
     cursor: pointer;
     margin: 10px;
     width: 2.5vw;
-  }
+    @media only screen and (max-width: 900px){
+      margin: 4px;
+      width: 4vw;
+  }}
 `;
 
 export const UserName = styled.div`
@@ -72,11 +75,15 @@ export const UserName = styled.div`
   font-weight: 800;
   font-size: 2.6vw;
   line-height: 61px;
+  @media only screen and (max-width: 900px){
+    font-size: 6vw;
+  }
 `;
 
 
 export const NextProfileButton = styled.a<{active?: boolean}>`
   margin-top: 20px; 
+  margin-bottom: 30px;
   cursor: pointer;
   background: #35660E;
   background: ${props => props.active ? '#35660E' : "#253a14"};

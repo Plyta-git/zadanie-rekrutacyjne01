@@ -51,6 +51,8 @@ export const StyledLabel = styled.label<{acceptedNoClicked?: boolean}>`
 `;
 
 export const SaveButton = styled.button`
+  margin-top: 30px;
+  margin-bottom: 30px;
   font-family: 'Lato';
   border: none;
   font-style: italic;
@@ -58,7 +60,6 @@ export const SaveButton = styled.button`
   font-size: 30px;
   line-height: 100%;
 	outline: inherit;
-  margin-top: 30px;
   cursor: pointer;
   background: #071594;
   box-shadow: 10px 4px 4px rgba(0, 0, 0, 0.75);

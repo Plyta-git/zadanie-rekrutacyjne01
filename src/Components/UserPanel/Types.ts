@@ -11,5 +11,4 @@ export type BoxProps = {
   sImg: string,
   isLoadingAPI: boolean,
   isError: boolean,
- 
 };

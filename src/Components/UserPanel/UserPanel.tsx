@@ -6,7 +6,8 @@ import {BoxProps} from './Types'
 export const UserPanel = ({ usersData, setcurrentUserID, sImg, isLoadingAPI, isError }: BoxProps,) => {
   const errorData = {name:"Error", birth_year:"000", eye_color:"000"}
   const {name, birth_year, eye_color} = isError ? errorData : usersData[0];
-  
+  const charAge = birth_year=="unknown" ? "unknown" : Number(birth_year.slice(0, -3))+10;
+
   return (
     <Main>
       <MainPanel>
@@ -23,7 +24,7 @@ export const UserPanel = ({ usersData, setcurrentUserID, sImg, isLoadingAPI, isE
               </div>
             </UserNamePanel>
             <UserInfo>
-              <div>age: {birth_year}</div>
+              <div>age(10ABY): {charAge}</div>
               <div>eye color: {eye_color}</div>
             </UserInfo>
           </User>

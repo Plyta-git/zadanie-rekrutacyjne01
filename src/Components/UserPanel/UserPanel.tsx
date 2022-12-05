@@ -1,5 +1,4 @@
 import {Main, MainPanel,UserNamePanel, StyledUserPanel, UserInfo, Img, User, UserName, NextProfileButton} from './StylesUserPanel'
-import { useEffect, useState } from "react";
 import imgAddUser from '../../assets/addUser.svg'
 import imgApply from '../../assets/apply.svg'
 import {BoxProps} from './Types'

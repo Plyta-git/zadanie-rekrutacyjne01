@@ -1,14 +1,15 @@
 import {StyledTopBar, FormButton} from './StylesTopBar'
+import {BoxProps} from './Types'
 import { creator } from '../../data/Data';
 
-export const TopBar = () => (
+export const TopBar = ({setIsFormOpen}: BoxProps) => (
   <StyledTopBar>
     <div>{creator}</div>
-    <FormButton className=" text-white bg-greenGray right-0 px-[43px] pt-[10px] pb-[12px] text-shadow-text italic ">
-      <a>
+    <FormButton onClick={(e)=> setIsFormOpen(true)} >
+      <div >
         <div>formularz</div>
         <div>rejestracyjny</div>
-      </a>
+      </div>
     </FormButton>
   </StyledTopBar>
 );

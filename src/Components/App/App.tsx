@@ -3,8 +3,9 @@ import { UserPanel } from "../UserPanel/UserPanel";
 import { useEffect, useState } from "react";
 import { TypeUsersData } from "./Types";
 import { usersAPI_URL, InitialUserData, imgAPI_URL } from "../../data/Data";
-import {Wrapper, Container} from './StylesApp'
+import { Wrapper, Container } from "./StylesApp";
 import imgTest from "../../assets/img.jpg";
+import Form from "../Form/Form";
 
 function App() {
   const [usersData, setUsersData] = useState<TypeUsersData>(InitialUserData);
@@ -12,43 +13,62 @@ function App() {
   const [sImg, setSImg] = useState(imgTest);
   const [isLoadingAPI, setIsLoadingAPI] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   useEffect(() => {
-    setIsLoadingAPI(true)
+    setIsLoadingAPI(true);
     let isImageLoading = true;
     let isDataLoading = true;
-    fetch(usersAPI_URL+currentUserID)
+
+    fetch(usersAPI_URL + currentUserID)
       .then((res) => res.json())
-      .then((jsRes) => {
-        setIsError(false)
-        if(!jsRes.name) {
-          setIsError(true)
-          alert("cant load data")
-        }
-        setUsersData((p)=>([jsRes, ...p]));
-        isDataLoading=false
-        setIsLoadingAPI(isImageLoading || isDataLoading)
-    }).catch((e)=>{
-      setIsError(true)
-      alert(e.message)
-    });
+      .then((jsRes) => onJsRes(jsRes))
+      .catch((e) => catchError(e));
     fetch(imgAPI_URL)
       .then((res) => res.blob())
-      .then((imgBlob) => {
-        setSImg(URL.createObjectURL(imgBlob));
-        isImageLoading=false;
-        setIsLoadingAPI(isImageLoading || isDataLoading)
-      }).catch((e)=>{
-        setIsError(true)
-        alert(e.message)
-      });
-  },[currentUserID]);
+      .then((imgBlob) => onImgRes(imgBlob))
+      .catch((e) => catchError(e));
+
+    const catchError = (e: string) => {
+      setIsLoadingAPI(false);
+      isImageLoading = isDataLoading = false;
+      setIsError(true);
+      alert(e);
+      console.log(e);
+    };
+    const onJsRes = (jsRes: any) => {
+      setIsError(false);
+      if (!jsRes || !jsRes.name) throw "cant load data";
+      setUsersData((p) => [jsRes, ...p]);
+      isDataLoading = false;
+      setIsLoadingAPI(isImageLoading || isDataLoading);
+    };
+    const onImgRes = (imgBlob: any) => {
+      setIsError(false);
+      if (!imgBlob) throw "cant load img";
+      setSImg(URL.createObjectURL(imgBlob));
+      isImageLoading = false;
+      setIsLoadingAPI(isImageLoading || isDataLoading);
+    };
+  }, [currentUserID]);
 
   return (
     <Wrapper>
       <Container>
-       <TopBar />
-        <UserPanel isError={isError} isLoadingAPI={isLoadingAPI} sImg={sImg} setcurrentUserID={setcurrentUserID} usersData={usersData}/>
+        {!isFormOpen ? (
+          <>
+            <TopBar setIsFormOpen={setIsFormOpen} />
+            <UserPanel
+              isError={isError}
+              isLoadingAPI={isLoadingAPI}
+              sImg={sImg}
+              setcurrentUserID={setcurrentUserID}
+              usersData={usersData}
+            />
+          </>
+        ) : (
+         <Form />
+        )}
       </Container>
     </Wrapper>
   );

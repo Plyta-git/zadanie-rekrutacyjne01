@@ -6,9 +6,9 @@ export const StyledTopBar = styled.div`
   & > div {
     margin: 11px 22px;
   }
-  @media only screen and (max-width: 540px){
-      flex-direction:column;
-      justify-content: center;
+  @media only screen and (max-width: 540px) {
+    flex-direction: column;
+    justify-content: center;
   }
 `;
 
@@ -23,7 +23,7 @@ export const FormButton = styled.div`
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   -webkit-text-stroke: 1px #d9d9d9;
   padding: 10px 40px 20px 40px;
-  @media only screen and (max-width: 540px){
-      text-align:center;
+  @media only screen and (max-width: 540px) {
+    text-align: center;
   }
 `;

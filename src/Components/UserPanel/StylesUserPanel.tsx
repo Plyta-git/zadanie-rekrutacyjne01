@@ -48,7 +48,6 @@ export const UserInfo = styled.div`
 `;
 
 export const UserNamePanel = styled.div`
-
   font-style: normal;
   font-weight: 800;
   line-height: 61px;
@@ -64,10 +63,11 @@ export const UserNamePanel = styled.div`
     cursor: pointer;
     margin: 10px;
     width: 2.5vw;
-    @media only screen and (max-width: 900px){
+    @media only screen and (max-width: 900px) {
       margin: 4px;
       width: 4vw;
-  }}
+    }
+  }
 `;
 
 export const UserName = styled.div`
@@ -75,24 +75,25 @@ export const UserName = styled.div`
   font-weight: 800;
   font-size: 2.6vw;
   line-height: 61px;
-  @media only screen and (max-width: 900px){
+  @media only screen and (max-width: 900px) {
     font-size: 6vw;
   }
 `;
 
-
-export const NextProfileButton = styled.a<{active?: boolean}>`
-  margin-top: 20px; 
-  margin-bottom: 30px;
+export const NextProfileButton = styled.a<{ active?: boolean }>`
+  margin-top: 20px;
   cursor: pointer;
-  background: #35660E;
-  background: ${props => props.active ? '#35660E' : "#253a14"};
+  background: #35660e;
+  background: ${(props) => (props.active ? "#35660E" : "#253a14")};
   box-shadow: 10px 4px 4px rgba(0, 0, 0, 0.75);
   border-radius: 20px;
-  color: ${props => props.active ? '#ffffff' : "#bbbbbb"};
+  color: ${(props) => (props.active ? "#ffffff" : "#bbbbbb")};
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-style: italic;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  -webkit-text-stroke: 1px ${props => props.active ? '#ffffff' : "#313131"};
+  -webkit-text-stroke: 1px ${(props) => (props.active ? "#ffffff" : "#313131")};
   padding: 8px 40px 12px 40px;
+  @media only screen and (max-width: 900px) {
+    margin-bottom: 30px;
+  }
 `;

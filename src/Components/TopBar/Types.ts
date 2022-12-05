@@ -1,3 +1,3 @@
 export type BoxProps = {
-  setIsFormOpen:React.Dispatch<React.SetStateAction<boolean>>
+  setIsFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };

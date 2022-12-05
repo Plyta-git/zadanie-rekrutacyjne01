@@ -4,28 +4,6 @@ interface Props {
   onSubmit: (e: { preventDefault: () => void }) => void;
 }
 
-export const H1 = styled.h1` 
-  margin-top: 100px;
-  margin-bottom: 50px;
-  margin-left:auto;
-  font-size: 20px;
-  font-weight: 800;
-  font-family: 'Inter';
-  text-align: right;
-  position: relative;
-  line-height: 165%;
-  letter-spacing: 0.15em;
-  &::after{
-    position:absolute;
-    right:0;
-    bottom:-30px;
-    content: "";
-    width: 166px;
-    height: 10px;
-    background-color: #071594;
-  }
-`
-
 export const StyledLabel = styled.label<{acceptedNoClicked?: boolean}>`
   line-height: 33px;
   font-family: "Inter";
@@ -50,9 +28,29 @@ export const StyledLabel = styled.label<{acceptedNoClicked?: boolean}>`
   }
 `;
 
+export const H1 = styled.h1` 
+  margin-top: 100px;
+  margin-bottom: 50px;
+  margin-left:auto;
+  font-size: 20px;
+  font-weight: 800;
+  text-align: right;
+  position: relative;
+  line-height: 165%;
+  letter-spacing: 0.15em;
+  &::after{
+    position:absolute;
+    right:0;
+    bottom:-30px;
+    content: "";
+    width: 166px;
+    height: 10px;
+    background-color: #071594;
+  }
+`
+
 export const SaveButton = styled.button`
   margin-top: 30px;
-  margin-bottom: 30px;
   font-family: 'Lato';
   border: none;
   font-style: italic;
@@ -65,9 +63,11 @@ export const SaveButton = styled.button`
   box-shadow: 10px 4px 4px rgba(0, 0, 0, 0.75);
   border-radius: 20px;
   color: #ffffff;
-  font-style: italic;
   -webkit-text-stroke: 1px #ffffff;
   padding: 8px 70px 12px 70px;
+  @media only screen and (max-width: 900px){
+    margin-bottom: 30px;
+  }
 `;
 
 export const StyledForm = styled.form<Props>`
@@ -115,7 +115,7 @@ export const StyledCheckbox = styled.label<{acceptedNoClicked?: boolean}>`
     font-weight: 300;
     font-size: 20px;
     line-height: 165%;
-    color:red;
+    color:red;  
     ${props => props.acceptedNoClicked ? 'content: "Wymagana akceptacja regulaminu";': 'content: "";'};
   }
 `;

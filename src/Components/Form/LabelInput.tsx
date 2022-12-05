@@ -1,28 +1,46 @@
-import styled from "styled-components";
+import { StyledLabel,StyledCheckbox } from "./StylesForm";
 
-type BoxProps = {
-    text: string;
-    value: string,
-    type: string,
-    pattern?: string,
-    changeHandler: (value: React.SetStateAction<string>) => void
-  }
+type BoxPropsLabel = {
+  text: string;
+  value: string;
+  type: string;
+  pattern?: string;
+  changeHandler: (value: React.SetStateAction<string>) => void;
+};
 
-const Input = styled.input`
-  border: none;
-  border-bottom: 2px solid black;
-`
+type BoxPropsCheckBox = {
+  setAccepted: React.Dispatch<React.SetStateAction<boolean>>
+  accepted: boolean
+};
 
-export const Label = ({value,type,changeHandler,text,pattern}: BoxProps) => {
+export const Label = ({
+  value,
+  type,
+  changeHandler,
+  text,
+  pattern,
+}: BoxPropsLabel) => {
   return (
-    <label>
+    <StyledLabel>
       {text}:
-      <Input
+      <input required
         pattern={pattern}
         type={type}
         value={value}
         onChange={(e) => changeHandler(e.target.value)}
       />
-    </label>
+    </StyledLabel>
   );
 };
+
+export const CheckBox = ({accepted,setAccepted}:BoxPropsCheckBox) => (
+  <StyledCheckbox>
+    <input
+      type="checkbox"
+      checked={accepted}
+      onChange={(e) => setAccepted(e.target.checked)}
+      required
+    />
+    Akceptuję regulamin
+  </StyledCheckbox>
+);

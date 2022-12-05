@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Label } from './LabelInput';
+import { CheckBox, Label } from './LabelInput';
+import {SaveButton, StyledForm, H1} from './StylesForm'
 
 const Form = () => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [number, setNumber] = useState('');
   const [email, setEmail] = useState('');
+  const [accepted, setAccepted] = useState(false);
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
@@ -24,13 +26,16 @@ const Form = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <>
+    <StyledForm onSubmit={handleSubmit}>
+    <H1>FORMULARZ REJESTRACYJNY</H1>
       <Label text={"Login"} value={login} type="text" changeHandler={setLogin}/>
       <Label text={"Hasło"} value={password} type="password" changeHandler={setPassword} pattern={'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$'}/>
-      <Label text={"Numer"} value={number} type="tel" changeHandler={setNumber} pattern={"[0-9]{9}"} />
-      <Label text={"emial"} value={email} type="email" changeHandler={setEmail}/>
-      <button type="submit">Wyślij</button>
-    </form>
+      <Label text={"E-mail"} value={email} type="email" changeHandler={setEmail}/>
+      <Label text={"Numer telefonu"} value={number} type="tel" changeHandler={setNumber} pattern={"[0-9]{9}"} />
+      <CheckBox setAccepted={setAccepted} accepted={accepted}/>
+      <SaveButton type="submit">zapisz</SaveButton>
+    </StyledForm></>
   );
 }
 

@@ -15,8 +15,15 @@ const Form = ({usersData}: Props) => {
   const [accepted, setAccepted] = useState(false);
   const [acceptedNoClicked, setAcceptedNoClicked] = useState(false);
   
-  const star_wars_data = {usersData}
+  //const star_wars_data = usersData.map(({name,created,vehicles})=>({name,created,vehicles}))
+  const star_wars_data = {
+    names: usersData.map(({name})=>(name)),
+    created: usersData.map(({created})=>(created)),
+    vehicles: usersData.map(({vehicles})=>(vehicles)),
+  }
 
+  
+  console.log(star_wars_data)
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     if(!accepted){
